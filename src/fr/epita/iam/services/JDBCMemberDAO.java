@@ -27,14 +27,13 @@ import fr.epita.iam.exceptions.DaoUpdateException;
  *  // save an identity
  *  dao.save(new Identity(...));
  *  
- *  //search with an example criteria (qbe)  
- *  dao.search(new Identity(...);
+ *
  * </pre>
  * 
  * <b>warning</b> this class is dealing with database connections, so beware to
  * release it through the {@link #releaseResources()}
  * 
- * @author tbrou
+ * @author bharath
  *
  */
 public class JDBCMemberDAO implements MemberDAO {
@@ -68,6 +67,12 @@ public class JDBCMemberDAO implements MemberDAO {
 		}
 	}
 
+	/**
+	 * this class updates member values
+	 * @throws DaoUpdateException
+	 * 
+	 * 
+	 */
 	@Override
 	public void update(Member member) throws DaoUpdateException {
 		// TODO Auto-generated method stub
@@ -83,6 +88,12 @@ public class JDBCMemberDAO implements MemberDAO {
 			e1.printStackTrace();
 		} 
 	}
+	/**
+	 * this class deletes member values
+	 * 
+	 * 
+	 * 
+	 */
 
 	@Override
 	public void delete(Member member) {
@@ -106,6 +117,11 @@ public class JDBCMemberDAO implements MemberDAO {
 
 	}
 
+	/**
+	 * for resource leakage
+	 * 
+	 * 
+	 */
 	@Override
 	public void releaseResources() {
 		// TODO Auto-generated method stub
@@ -117,6 +133,12 @@ public class JDBCMemberDAO implements MemberDAO {
 		}
 	}
 
+	/**
+	 * this class searches for member values
+	 * @throws DaoSearchException
+	 * 
+	 * 
+	 */
 	@Override
 	public List<Member> search(Member member) throws DaoSearchException {
 		// TODO Auto-generated method stub
@@ -125,6 +147,36 @@ public class JDBCMemberDAO implements MemberDAO {
 		try {
 			PreparedStatement preparedStatement = this.connection
 					.prepareStatement("SELECT * from login WHERE username='" + member.getUname()+"' AND password='" + member.getPass()+"'");
+
+			ResultSet results = preparedStatement.executeQuery();
+
+			while (results.next()) {
+				String uname = results.getString("username");
+				String pass = results.getString("password");
+				String mid = results.getString("member_id");
+				
+				returnedList.add(new Member( uname,pass, mid));
+
+			}
+		} catch (SQLException sqle) {
+			DaoSearchException daose = new DaoSearchException();
+			daose.initCause(sqle);
+			throw daose;
+		}
+
+		return returnedList;
+		
+	}
+
+	
+	
+	public List<Member> searchUser(Member member) throws DaoSearchException {
+		// TODO Auto-generated method stub
+		
+		List<Member> returnedList = new ArrayList<Member>();
+		try {
+			PreparedStatement preparedStatement = this.connection
+					.prepareStatement("SELECT * from login WHERE username='" + member.getUname()+"'");
 
 			ResultSet results = preparedStatement.executeQuery();
 

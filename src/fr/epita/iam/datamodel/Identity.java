@@ -6,7 +6,9 @@ package fr.epita.iam.datamodel;
 import java.sql.Date;
 
 /**
- * @author tbrou
+ * @author bharath
+ * 
+ * this is the class for Identity data model
  *
  */
 public class Identity {

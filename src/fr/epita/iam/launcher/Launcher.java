@@ -21,12 +21,15 @@ import fr.epita.logging.LogConfiguration;
 import fr.epita.logging.Logger;
 
 /**
- * @author tbrou
+ * @author bharath
  *
  */
 public class Launcher {
 
 	/**
+	 * 
+	 * Launcher Program which which invoke all the services.
+	 * all operations on contact boob is available here
 	 * @param args
 	 * @throws SQLException 
 	 * @throws DaoSearchException 
@@ -35,6 +38,7 @@ public class Launcher {
 	 * @throws IOException 
 	 * @throws InterruptedException 
 	 */
+	
 	public static void main(String[] args) throws SQLException, DaoSearchException, DaoSaveException, DaoUpdateException, IOException, InterruptedException {
 
 		JDBCIdentityDAO dao = new JDBCIdentityDAO();
@@ -52,7 +56,7 @@ public class Launcher {
 		for(Member mem : isLogin)
 			members=mem;
 		String choice="";
-		System.out.println("Successfully authenticated");
+		
 		while(!choice.equals("3"))
 		if(!isLogin.isEmpty())
 		{
@@ -208,6 +212,7 @@ public class Launcher {
 				break;
 			
 			}
+			scanner.close();
 			System.out.println("you decided to quit, bye!");
 			
 

@@ -1,5 +1,10 @@
 package fr.epita.iam.datamodel;
-
+/**
+ * @author bharath
+ * 
+ * this is the class for Member data model
+ *
+ */
 public class Member {
 
 	private String uname;

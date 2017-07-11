@@ -12,8 +12,8 @@ import fr.epita.iam.exceptions.DaoSearchException;
 import fr.epita.iam.exceptions.DaoUpdateException;
 
 /**
- * @author tbrou
- *
+ * @author bharath
+ *this is the interface which defines the Member object operations
  */
 public interface MemberDAO {
 

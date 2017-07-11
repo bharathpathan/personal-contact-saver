@@ -50,6 +50,9 @@ public class JDBCIdentityDAO implements IdentityDAO {
 		 String myUrl = "jdbc:mysql://localhost/bharathdb";
 		  this.connection = DriverManager.getConnection(myUrl, "root", "");
 	}
+	/**
+	 * this is for identity save
+	 */
 
 	public void save(Identity identity) throws DaoSaveException {
 		try {
@@ -70,6 +73,9 @@ public class JDBCIdentityDAO implements IdentityDAO {
 		}
 	}
 //	
+	/**
+	 * this is for identity searching
+	 */
 
 	public List<Identity> search(Identity criteria) throws DaoSearchException {
 		List<Identity> returnedList = new ArrayList<Identity>();

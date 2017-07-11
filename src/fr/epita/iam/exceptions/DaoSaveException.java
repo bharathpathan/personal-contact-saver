@@ -4,7 +4,7 @@
 package fr.epita.iam.exceptions;
 
 /**
- * @author tbrou
+ * @author bharath
  *
  */
 public class DaoSaveException extends Exception{
